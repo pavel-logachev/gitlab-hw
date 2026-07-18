@@ -7,6 +7,7 @@ import (
 )
 
 func hello(name string) string {
+	// Keep the greeting deterministic so the CI unit test can validate it.
 	return fmt.Sprintf("Hello %s!", name)
 }
 
@@ -16,4 +17,3 @@ func main() {
 	}
 	fmt.Println(hello(os.Args[1]))
 }
-
