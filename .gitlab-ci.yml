@@ -1,0 +1,35 @@
+stages:
+  - test
+  - build
+
+variables:
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_TLS_CERTDIR: ""
+
+unit-tests:
+  stage: test
+  image: golang:1.24-alpine
+  tags:
+    - docker
+  script:
+    - go test ./...
+  rules:
+    - changes:
+        - "**/*.go"
+        - go.mod
+
+container-build:
+  stage: build
+  image: docker:27-cli
+  services:
+    - name: docker:27-dind
+      command: ["--tls=false"]
+  tags:
+    - docker
+  needs: []
+  before_script:
+    - docker info
+  script:
+    - docker build --pull -t "gitlab-ci-homework:${CI_COMMIT_SHORT_SHA}" .
+    - docker image inspect "gitlab-ci-homework:${CI_COMMIT_SHORT_SHA}"
+
