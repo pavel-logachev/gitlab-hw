@@ -15,8 +15,6 @@ services:
         gitlab_rails['gitlab_shell_ssh_port'] = 2222
         gitlab_rails['gitlab_signup_enabled'] = false
         prometheus_monitoring['enable'] = false
-        alertmanager['enable'] = false
-        grafana['enable'] = false
         puma['worker_processes'] = 2
         sidekiq['concurrency'] = 5
     volumes:
@@ -47,4 +45,3 @@ volumes:
 networks:
   gitlab-lab:
     name: gitlab-lab
-

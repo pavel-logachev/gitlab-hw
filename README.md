@@ -26,7 +26,9 @@ GitLab CE и GitLab Runner развёрнуты локально в Docker Compo
 - privileged mode включён только для локальной учебной сборки Docker-in-Docker;
 - токен runner не публикуется.
 
-Скриншот настроек runner будет добавлен после запуска стенда.
+Runner зарегистрирован и находится в состоянии `Online / Idle`:
+
+![Зарегистрированный GitLab Runner](evidence/01-runner-settings.png)
 
 ## Задание 2. Pipeline
 
@@ -35,7 +37,12 @@ GitLab CE и GitLab Runner развёрнуты локально в Docker Compo
 - `unit-tests` запускает `go test ./...` в официальном Go-образе;
 - `container-build` запускает Docker-in-Docker, собирает образ и проверяет его через `docker image inspect`.
 
-Скриншот успешного pipeline будет добавлен после запуска стенда.
+Pipeline `#3` для коммита `9cd1a466` завершён со статусом `Passed`. Обе job выполнены успешно:
+
+- `unit-tests`;
+- `container-build`.
+
+![Успешный GitLab pipeline](evidence/02-successful-pipeline.png)
 
 ## Дополнительное задание
 
@@ -53,5 +60,3 @@ docker run --rm gitlab-ci-homework:local Netology
 ```
 
 Ожидаемый вывод контейнера: `Hello Netology!`.
-
-Netology GitLab CI homework with local runner
